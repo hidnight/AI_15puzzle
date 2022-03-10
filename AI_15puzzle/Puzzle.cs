@@ -105,8 +105,8 @@ namespace AI_15puzzle {
                         return false;
                     }
                     Position x = open.Dequeue();
-                    closed.Add(x);
                     if (x.Equals(finalPosition)) {
+                        closed.Add(x);
                         solution = closed;
                         return true;
                     }
@@ -116,6 +116,7 @@ namespace AI_15puzzle {
                             open.Enqueue(child);
                         }
                     }
+                    closed.Add(x);
                 }
             }
             return solvable;
@@ -129,99 +130,18 @@ namespace AI_15puzzle {
             }
         }
 
-        public class Position : IComparable {
-            private int[,] board;
-            private int score;
-            public Position(int[,] board) {
-                this.board = board;
-                score = evaluate();
-            }
-
-            public int CompareTo(object obj) {
-                return score.CompareTo(((Position)obj).Score);
-            }
-
-            public bool Equals(Position p) {
-                return p.board == board;
-            }
-            public int Score {
-                get {
-                    return score;
-                }
-                set {
-                    score = value;
-                }
-            }
-            public int[,] Board {
-                get {
-                    return board;
-                }
-                set {
-                    board = value;
-                }
-            }
-            // Возвращает сумму квадратов Манхэттенских расстояний
-            private int evaluate() {
-                int score = 0;
-                for (int i = 0; i < 4; i++) {
-                    for (int j = 0; j < 4; j++) {
-                        if (board[i, j] == 0) {
-                            score += (Math.Abs(3 - i) + Math.Abs(3 - j)) * (Math.Abs(3 - i) + Math.Abs(3 - j));
-                            continue;
-                        }
-                        score += (Math.Abs(board[i,j] / 4 - i) + Math.Abs(board[i, j] % 4 - 1 - j)) * (Math.Abs(board[i, j] / 4 - i) + Math.Abs(board[i, j] % 4 - 1 - j));
-                    }
-                }
-                return score;
-            }
-
-            public List<Position> GetChildren() {
-                List<Position> children = new List<Position>();
-                int zeroi = -1, zeroj = -1;
-                for (int i = 0; i < 4; i++) {
-                    for (int j = 0; j < 4; j++) {
-                        if (board[i,j] == 0) {
-                            zeroi = i;
-                            zeroj = j;
-                        }
-                    }
-                }
-
-                // перемещение 0
-                // вверх
-                if (zeroi > 0) {
-                    board[zeroi, zeroj] = board[zeroi - 1, zeroj];
-                    board[zeroi - 1, zeroj] = 0;
-                    children.Add(new Position(board));
-                    board[zeroi - 1, zeroj] = board[zeroi, zeroj];
-                    board[zeroi, zeroj] = 0;
-                }
-                // вниз
-                if (zeroi < 3) {
-                    board[zeroi, zeroj] = board[zeroi + 1, zeroj];
-                    board[zeroi + 1, zeroj] = 0;
-                    children.Add(new Position(board));
-                    board[zeroi + 1, zeroj] = board[zeroi, zeroj];
-                    board[zeroi, zeroj] = 0;
-                }
-                // влево
-                if (zeroj > 0) {
-                    board[zeroi, zeroj] = board[zeroi, zeroj - 1];
-                    board[zeroi, zeroj - 1] = 0;
-                    children.Add(new Position(board));
-                    board[zeroi, zeroj - 1] = board[zeroi, zeroj];
-                    board[zeroi, zeroj] = 0;
-                }
-                // вправо
-                if (zeroj < 3) {
-                    board[zeroi, zeroj] = board[zeroi, zeroj + 1];
-                    board[zeroi, zeroj + 1] = 0;
-                    children.Add(new Position(board));
-                    board[zeroi, zeroj + 1] = board[zeroi, zeroj];
-                    board[zeroi, zeroj] = 0;
-                }
-                return children;
+        public bool Solvable {
+            get {
+                return solvable;
             }
         }
+
+        public bool Solved {
+            get {
+                return solved;
+            }
+        }
+
+        
     }
 }
