@@ -10,25 +10,27 @@
         <GroupBox x:Name="groupBoxButtons" Header="" HorizontalAlignment="Left" Height="310" Margin="10,10,0,0" VerticalAlignment="Top" Width="300">
 
             <Grid x:Name="gridButtons">
-                <Button x:Name="button1" Content="1" HorizontalAlignment="Left" Height="65" Margin="5,5,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="1" TabIndex="0"/>
-                <Button x:Name="button2" Content="2" HorizontalAlignment="Left" Height="65" Margin="76,5,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="2" TabIndex="1"/>
-                <Button x:Name="button3" Content="3" HorizontalAlignment="Left" Height="65" Margin="147,5,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="3" TabIndex="2"/>
-                <Button x:Name="button4" Content="4" HorizontalAlignment="Left" Height="65" Margin="218,5,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="4" TabIndex="3"/>
-                <Button x:Name="button5" Content="5" HorizontalAlignment="Left" Height="65" Margin="5,76,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="5" TabIndex="4"/>
-                <Button x:Name="button6" Content="6" HorizontalAlignment="Left" Height="65" Margin="76,76,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="6" TabIndex="5"/>
-                <Button x:Name="button7" Content="7" HorizontalAlignment="Left" Height="65" Margin="147,76,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="7" TabIndex="6"/>
-                <Button x:Name="button8" Content="8" HorizontalAlignment="Left" Height="65" Margin="218,76,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="8" TabIndex="7"/>
-                <Button x:Name="button9" Content="9" HorizontalAlignment="Left" Height="65" Margin="5,147,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="9" TabIndex="8"/>
-                <Button x:Name="button10" Content="10" HorizontalAlignment="Left" Height="65" Margin="76,147,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="10" TabIndex="9"/>
-                <Button x:Name="button11" Content="11" HorizontalAlignment="Left" Height="65" Margin="147,147,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="11" TabIndex="10"/>
-                <Button x:Name="button12" Content="12" HorizontalAlignment="Left" Height="65" Margin="218,147,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="12" TabIndex="11"/>
-                <Button x:Name="button13" Content="13" HorizontalAlignment="Left" Height="65" Margin="5,218,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="13" TabIndex="12"/>
-                <Button x:Name="button14" Content="14" HorizontalAlignment="Left" Height="65" Margin="76,218,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="14" TabIndex="13"/>
-                <Button x:Name="button15" Content="15" HorizontalAlignment="Left" Height="65" Margin="147,218,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="15" TabIndex="14"/>
-                <Button x:Name="button16" Content="" HorizontalAlignment="Left" Height="65" Margin="218,218,0, 0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="16" IsTabStop="False"/>
+                <Button x:Name="button1" Content="1" HorizontalAlignment="Left" Height="65" Margin="5,5,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="1" TabIndex="0" Click="tile_Click"/>
+                <Button x:Name="button2" Content="2" HorizontalAlignment="Left" Height="65" Margin="76,5,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="2" TabIndex="1" Click="tile_Click"/>
+                <Button x:Name="button3" Content="3" HorizontalAlignment="Left" Height="65" Margin="147,5,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="3" TabIndex="2" Click="tile_Click"/>
+                <Button x:Name="button4" Content="4" HorizontalAlignment="Left" Height="65" Margin="218,5,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="4" TabIndex="3" Click="tile_Click"/>
+                <Button x:Name="button5" Content="5" HorizontalAlignment="Left" Height="65" Margin="5,76,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="5" TabIndex="4" Click="tile_Click"/>
+                <Button x:Name="button6" Content="6" HorizontalAlignment="Left" Height="65" Margin="76,76,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="6" TabIndex="5" Click="tile_Click"/>
+                <Button x:Name="button7" Content="7" HorizontalAlignment="Left" Height="65" Margin="147,76,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="7" TabIndex="6" Click="tile_Click"/>
+                <Button x:Name="button8" Content="8" HorizontalAlignment="Left" Height="65" Margin="218,76,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="8" TabIndex="7" Click="tile_Click"/>
+                <Button x:Name="button9" Content="9" HorizontalAlignment="Left" Height="65" Margin="5,147,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="9" TabIndex="8" Click="tile_Click"/>
+                <Button x:Name="button10" Content="10" HorizontalAlignment="Left" Height="65" Margin="76,147,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="10" TabIndex="9" Click="tile_Click"/>
+                <Button x:Name="button11" Content="11" HorizontalAlignment="Left" Height="65" Margin="147,147,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="11" TabIndex="10" Click="tile_Click"/>
+                <Button x:Name="button12" Content="12" HorizontalAlignment="Left" Height="65" Margin="218,147,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="12" TabIndex="11" Click="tile_Click"/>
+                <Button x:Name="button13" Content="13" HorizontalAlignment="Left" Height="65" Margin="5,218,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="13" TabIndex="12" Click="tile_Click"/>
+                <Button x:Name="button14" Content="14" HorizontalAlignment="Left" Height="65" Margin="76,218,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="14" TabIndex="13" Click="tile_Click"/>
+                <Button x:Name="button15" Content="15" HorizontalAlignment="Left" Height="65" Margin="147,218,0,0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="15" TabIndex="14" Click="tile_Click"/>
+                <Button x:Name="button16" Content="" HorizontalAlignment="Left" Height="65" Margin="218,218,0, 0" VerticalAlignment="Top" Width="65" FontSize="36" FontFamily="Arial Black" Foreground="Black" Tag="16" TabIndex="15" Click="tile_Click"/>
             </Grid>
         </GroupBox>
-        <Button x:Name="newGame" Content="Перемешать" HorizontalAlignment="Left" Height="43" Margin="315,47.158,0,0" VerticalAlignment="Top" Width="137" FontSize="20" Foreground="Black" Tag="4" TabIndex="17" Click="newGame_Click"/>
-
+        <Button x:Name="newGame" Content="Перемешать" HorizontalAlignment="Left" Height="35" Margin="315,35,0,0" VerticalAlignment="Top" Width="160" FontSize="18" Foreground="Black" Tag="4" TabIndex="16" Click="newGame_Click"/>
+        <Button x:Name="findSolution" Content="Найти решение" HorizontalAlignment="Left" Height="35" Margin="315,95,0,0" VerticalAlignment="Top" Width="160" FontSize="18" Foreground="Black" Tag="4" TabIndex="17" Click="findSolution_Click"/>
+        <Button x:Name="showSolution" Content="Показать решение" HorizontalAlignment="Left" Height="35" Margin="315,155,0,0" VerticalAlignment="Top" Width="160" FontSize="18" Foreground="Black" Tag="4" TabIndex="18" IsEnabled="False"/>
+        <TextBox x:Name="infoTextBox" HorizontalAlignment="Left" Height="26.333" Margin="10,325,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" FontSize="16" IsReadOnly="True"/>
     </Grid>
 </Window>
