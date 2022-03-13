@@ -11,7 +11,6 @@ namespace AI_15puzzle {
         private List<Position> solution;
         private bool solvable;
         private bool solved;
-
         public Puzzle(int[] seq) {
             int[,] initialBoard;
             int[,] finalBoard;
@@ -32,7 +31,7 @@ namespace AI_15puzzle {
                     {13,14,15,00}
                 };
             finalPosition = new Position(finalBoard);
-            solution = new List<Position>();
+            solution = null;
             solved = false;
         }
 
@@ -51,7 +50,7 @@ namespace AI_15puzzle {
                     {13,14,15,00}
                 };
             finalPosition = new Position(finalBoard);
-            solution = new List<Position>();
+            solution = null;
         }
 
         // https://ru.wikipedia.org/wiki/Игра_в_15#Математическое_описание
@@ -65,7 +64,10 @@ namespace AI_15puzzle {
                 }
                 if (seq[i] == 1) continue;
                 for (int j = i + 1; j < 16; j++) {
-                    if (seq[j] > seq[i])
+                    if (seq[j] == 0) {
+                        continue;
+                    }
+                    if (seq[i] > seq[j])
                         N++; 
                 }
             }
@@ -77,7 +79,7 @@ namespace AI_15puzzle {
             for (int i1 = 0; i1 < 4; i1++) {
                 for (int j1 = 0; j1 < 4; j1++) {
                     // ряд пустой клетки
-                    if (board[i1,j1] == 0) {
+                    if (board[i1, j1] == 0) {
                         N += i1 + 1;
                         continue;
                     }
@@ -86,8 +88,11 @@ namespace AI_15puzzle {
                     }
                     for (int i2 = i1; i2 < 4; i2++) {
                         for (int j2 = j1; j2 < 4; j2++) {
-                            if (board[i2, j2] > board[i1, j1])
+                            if (board[i2, j2] == 0)
+                                continue;
+                            if (board[i1, j1] > board[i2, j2]) {
                                 N++;
+                            }
                         }
                     }
                 }
@@ -107,7 +112,8 @@ namespace AI_15puzzle {
                     Position x = open.Dequeue();
                     if (x.Equals(finalPosition)) {
                         closed.Add(x);
-                        solution = closed;
+                        solution = ConstructSolution(closed);
+                        solved = true;
                         return true;
                     }
                     List<Position> children = x.GetChildren();
@@ -142,6 +148,22 @@ namespace AI_15puzzle {
             }
         }
 
-        
+        private List<Position> ConstructSolution(List<Position> closed) {
+            List<Position> result = new List<Position>();
+            int i = closed.Count - 1;
+            while (i != 0) {
+                int j = i - 1;
+                List<Position> children = closed[i].GetChildren();
+                while (!children.Contains(closed[j])) {
+                    j--;
+                }
+                result.Add(closed[i]);
+                i = j;
+            }
+            // добавить начальное состояние
+            //result.Add(closed[i]);
+            result.Reverse();
+            return result;
+        }
     }
 }
