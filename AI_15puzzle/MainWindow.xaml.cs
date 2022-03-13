@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AI_15puzzle {
     /// <summary>
@@ -19,11 +11,12 @@ namespace AI_15puzzle {
     /// </summary>
     public partial class MainWindow : Window {
         private int[,] board;
-    private Puzzle puzzle;
+        private Puzzle puzzle;
+        private int delay;
         public MainWindow() {
             InitializeComponent();
             board = ShuffleTiles();
-            puzzle = new Puzzle(board);
+            delay = 500;
         }
 
         private int[,] ShuffleTiles() {
@@ -32,7 +25,7 @@ namespace AI_15puzzle {
             Random rnd = new Random();
             int[] tiles;
             #if DEBUG
-                tiles = new int [] {1,2,3,4,5,6,7,8,9,10,11,12,0,13,14,15};
+                tiles = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 0, 13, 14, 15 };
             #else
                 tiles = Enumerable.Range(0, 16).OrderBy(c => rnd.Next()).ToArray();
             #endif
@@ -93,12 +86,12 @@ namespace AI_15puzzle {
                 ((Button)sender).Content = 0.ToString();
                 ((Button)sender).Visibility = Visibility.Hidden;
                 neighbour.Visibility = Visibility.Visible;
-                neighbour.Visibility = Visibility.Visible;
             }
         }
 
-        private void UpdateField() {
+        private void UpdateBoard() {
             foreach (Button button in gridButtons.Children) {
+                button.Visibility = Visibility.Visible;
                 int index = int.Parse((string)button.Tag) - 1;
                 button.Content = board[index / 4, index % 4].ToString();
                 if (board[index / 4, index % 4] == 0)
@@ -107,6 +100,7 @@ namespace AI_15puzzle {
         }
 
         async private void findSolution_Click(object sender, RoutedEventArgs e) {
+            puzzle = new Puzzle(board);
             if (!puzzle.Solvable) {
                 infoTextBox.Text = "Решения не существует";
 
@@ -122,6 +116,21 @@ namespace AI_15puzzle {
                 findSolution.IsEnabled = true;
                 gridButtons.IsEnabled = true;
             }
+        }
+
+        async private void showSolution_Click(object sender, RoutedEventArgs e) {
+            newGame.IsEnabled = false;
+            findSolution.IsEnabled = false;
+            gridButtons.IsEnabled = false;
+            showSolution.IsEnabled = false;
+            foreach (Position p in puzzle.Solution) {
+                board = p.Board;
+                UpdateBoard();
+                await Task.Delay(delay);
+            }
+            newGame.IsEnabled = true;
+            findSolution.IsEnabled = true;
+            gridButtons.IsEnabled = true;
         }
     }
 }
