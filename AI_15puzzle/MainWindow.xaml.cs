@@ -14,10 +14,12 @@ namespace AI_15puzzle {
         private int[,] board;
         private Puzzle puzzle;
         private int delay;
+        private bool cheat;
         public MainWindow() {
             InitializeComponent();
             newGame_Click(null, null);
             delay = 500;
+            cheat = false;
         }
 
         private int[,] ShuffleTiles() {
@@ -25,11 +27,11 @@ namespace AI_15puzzle {
             showSolution.IsEnabled = false;
             Random rnd = new Random();
             int[] tiles;
-            #if DEBUG
+            if (cheat) {
                 tiles = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 0, 13, 14, 15 };
-            #else
+            } else {
                 tiles = Enumerable.Range(0, 16).OrderBy(c => rnd.Next()).ToArray();
-            #endif
+            }
             int[,] board = new int[4, 4];
             foreach (Button button in gridButtons.Children) {
                 int index = int.Parse((string)button.Tag) - 1;
@@ -139,6 +141,10 @@ namespace AI_15puzzle {
             newGame.IsEnabled = true;
             findSolution.IsEnabled = true;
             gridButtons.IsEnabled = true;
+        }
+
+        private void cheatCheckBox_Checked(object sender, RoutedEventArgs e) {
+            cheat = (bool)((CheckBox)sender).IsChecked;
         }
     }
 }
