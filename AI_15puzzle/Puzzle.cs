@@ -87,7 +87,7 @@ namespace AI_15puzzle {
                         continue;
                     }
                     for (int i2 = i1; i2 < 4; i2++) {
-                        for (int j2 = j1; j2 < 4; j2++) {
+                        for (int j2 = (i1 == i2) ? j1 : 0; j2 < 4; j2++) {
                             if (board[i2, j2] == 0)
                                 continue;
                             if (board[i1, j1] > board[i2, j2]) {
