@@ -29,7 +29,7 @@
             </Grid>
         </GroupBox>
         <Button x:Name="newGame" Content="Перемешать" HorizontalAlignment="Left" Height="35" Margin="315,35,0,0" VerticalAlignment="Top" Width="160" FontSize="18" Foreground="Black" Tag="4" TabIndex="16" Click="newGame_Click"/>
-        <Button x:Name="findSolution" Content="Найти решение" HorizontalAlignment="Left" Height="35" Margin="315,95,0,0" VerticalAlignment="Top" Width="160" FontSize="18" Foreground="Black" Tag="4" TabIndex="17" Click="findSolution_Click"/>
+        <Button x:Name="findSolution" Content="Найти решение" HorizontalAlignment="Left" Height="35" Margin="315,95,0,0" VerticalAlignment="Top" Width="160" FontSize="18" Foreground="Black" Tag="4" TabIndex="17" Click="findSolution_Click" IsEnabled="False"/>
         <Button x:Name="showSolution" Content="Показать решение" HorizontalAlignment="Left" Height="35" Margin="315,155,0,0" VerticalAlignment="Top" Width="160" FontSize="18" Foreground="Black" Tag="4" TabIndex="18" IsEnabled="False" Click="showSolution_Click"/>
         <TextBox x:Name="infoTextBox" HorizontalAlignment="Left" Height="26.333" Margin="10,325,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" FontSize="16" IsReadOnly="True"/>
     </Grid>

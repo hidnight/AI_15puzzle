@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Media;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,7 +16,7 @@ namespace AI_15puzzle {
         private int delay;
         public MainWindow() {
             InitializeComponent();
-            board = ShuffleTiles();
+            newGame_Click(null, null);
             delay = 500;
         }
 
@@ -45,6 +46,13 @@ namespace AI_15puzzle {
         private void newGame_Click(object sender, RoutedEventArgs e) {
             board = ShuffleTiles();
             puzzle = new Puzzle(board);
+            if (puzzle.Solvable) {
+                infoTextBox.Text = "Решение существует";
+                findSolution.IsEnabled = true;
+            } else {
+                infoTextBox.Text = "Решения не существует";
+                findSolution.IsEnabled = false;
+            }
         }
 
         private void tile_Click(object sender, RoutedEventArgs e) {
@@ -103,13 +111,13 @@ namespace AI_15puzzle {
             puzzle = new Puzzle(board);
             if (!puzzle.Solvable) {
                 infoTextBox.Text = "Решения не существует";
-
             } else {
                 newGame.IsEnabled = false;
                 findSolution.IsEnabled = false;
                 gridButtons.IsEnabled = false;
                 infoTextBox.Text = "Начат поиск решения. Ждите";
                 await Task.Run(puzzle.computeSolution);
+                SystemSounds.Asterisk.Play();
                 infoTextBox.Text = "Решение найдено";
                 showSolution.IsEnabled = true;
                 newGame.IsEnabled = true;
