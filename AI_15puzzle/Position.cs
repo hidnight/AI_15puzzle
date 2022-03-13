@@ -9,12 +9,17 @@ namespace AI_15puzzle {
         private int[,] board;
         private int score;
         public Position(int[,] board) {
-            this.board = board;
+            this.board = new int[4, 4];
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 4; j++) {
+                    (this.board)[i, j] = board[i, j];
+                }
+            }
             score = evaluate();
         }
 
         public int CompareTo(object obj) {
-            return score.CompareTo(((Position)obj).Score);
+            return score.CompareTo(((Position)obj).score);
         }
 
         public bool Equals(Position p) {
@@ -44,19 +49,20 @@ namespace AI_15puzzle {
                 board = value;
             }
         }
-        // Возвращает сумму квадратов Манхэттенских расстояний
+
+        // Возвращает сумму Манхэттенских расстояний
         private int evaluate() {
             int score = 0;
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++) {
                     int add;
                     if (board[i, j] == 0) {
-                        add = (Math.Abs(3 - i) + Math.Abs(3 - j));
-                        score += add * add;
+                        add = Math.Abs(3 - i) + Math.Abs(3 - j);
+                        score += add;
                         continue;
                     }
-                    add = (Math.Abs((board[i, j] - 1) / 4 - i) + Math.Abs((board[i, j] - 1) % 4 - j));
-                    score += add * add;
+                    add = Math.Abs((board[i, j] - 1) / 4 - i) + Math.Abs((board[i, j] - 1) % 4 - j);
+                    score += add;
                 }
             }
             return score;
@@ -73,7 +79,6 @@ namespace AI_15puzzle {
                     }
                 }
             }
-
             // перемещение 0
             // вверх
             if (zeroi > 0) {
